@@ -149,13 +149,9 @@ static union {
     #endif
 } sdmmc_handle;
 
-union {
-    SD_HandleTypeDef sd;
-    #if MICROPY_HW_ENABLE_MMCARD
-    MMC_HandleTypeDef mmc;
-    #endif
-}* getSDMMCHandle(void) {
-    return &sdmmc_handle;
+
+    SD_HandleTypeDef* getSDHandle(void) {
+    return &sdmmc_handle.sd;
 }
 
 void sdcard_init(void) {

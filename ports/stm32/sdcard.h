@@ -47,11 +47,6 @@ struct _fs_user_mount_t;
 void sdcard_init_vfs(struct _fs_user_mount_t *vfs, int part);
 
 
-union {
-    SD_HandleTypeDef sd;
-#if MICROPY_HW_ENABLE_MMCARD
-    MMC_HandleTypeDef mmc;
-#endif
-}* getSDMMCHandle(void);
+SD_HandleTypeDef* getSDHandle(void);
 
 #endif // MICROPY_INCLUDED_STM32_SDCARD_H
