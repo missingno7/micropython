@@ -149,6 +149,15 @@ static union {
     #endif
 } sdmmc_handle;
 
+union {
+    SD_HandleTypeDef sd;
+    #if MICROPY_HW_ENABLE_MMCARD
+    MMC_HandleTypeDef mmc;
+    #endif
+}* getSDMMCHandle(void) {
+    return &sdmmc_handle;
+}
+
 void sdcard_init(void) {
     // Set SD/MMC to no mode and inactive
     pyb_sdmmc_flags = 0;
